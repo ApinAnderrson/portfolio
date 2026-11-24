@@ -11,14 +11,16 @@ const themes = {
 
 function Card({ project, index, total, progress }) {
   // Each card shrinks a little as the cards after it stack on top
-  const targetScale = 1 - (total - 1 - index) * 0.04;
+  // (kept small so the stacked cards — and their tabs — stay lined up on the left)
+  const targetScale = 1 - (total - 1 - index) * 0.02;
   const scale = useTransform(progress, [index / total, 1], [1, targetScale]);
   const mediaY = useTransform(progress, [index / total, (index + 1) / total], [0, -30]);
   const first = index === 0;
 
   return (
     <div
-      className="sticky top-[calc(96px+var(--i)*40px)] mb-[70px] pt-10 last:mb-0 md:top-[calc(112px+var(--i)*46px)]"
+      // Each card sticks only a few px below the one before, so the next card closes right up on it
+      className="sticky top-[calc(96px+var(--i)*12px)] mb-[70px] pt-10 last:mb-0 md:top-[calc(112px+var(--i)*16px)]"
       style={{ '--i': index }}
     >
       <motion.article
@@ -29,14 +31,15 @@ function Card({ project, index, total, progress }) {
         viewport={{ once: true, margin: '-60px' }}
         transition={{ duration: 0.8, ease: [0.2, 0.8, 0.2, 1] }}
       >
-        {/* Folder tab — each card's tab sits further right so they all peek out when stacked */}
+        {/* Folder tab — fixed width, placed right next to the previous card's tab
+            (overlapping its slanted edge by 14px) so all tabs sit in a tight row when stacked */}
         <div
-          className={`absolute -top-10 flex h-[41px] items-center font-mono text-[9px] font-bold uppercase tracking-[0.12em] sm:text-[11px] ${project.tab} ${
+          className={`absolute -top-10 flex h-[41px] w-[var(--tab-w)] items-center whitespace-nowrap font-mono text-[9px] font-bold uppercase tracking-[0.08em] [--tab-w:116px] sm:text-[11px] sm:tracking-[0.12em] sm:[--tab-w:176px] ${project.tab} ${
             first
-              ? 'rounded-tl-[10px] pl-4 pr-9 [clip-path:polygon(0_0,78%_0,100%_100%,0_100%)] sm:pl-[22px] sm:pr-[52px]'
-              : 'px-8 [clip-path:polygon(14%_0,86%_0,100%_100%,0_100%)] sm:px-[46px]'
+              ? 'rounded-tl-[10px] pl-3 [clip-path:polygon(0_0,86%_0,100%_100%,0_100%)] sm:pl-5'
+              : 'justify-center [clip-path:polygon(14%_0,86%_0,100%_100%,0_100%)]'
           }`}
-          style={{ left: `calc(${index} * clamp(90px, 24%, 240px))` }}
+          style={{ left: `calc(${index} * (var(--tab-w) - 14px))` }}
         >
           ✦ Project {project.id}
         </div>
@@ -92,6 +95,9 @@ export default function Projects() {
         {projects.map((p, i) => (
           <Card key={p.id} project={p} index={i} total={projects.length} progress={scrollYProgress} />
         ))}
+        {/* Spacer: keeps the earlier cards pinned until the last card has fully stacked on them.
+            (Sticky items are released when their container's content ends — padding doesn't count.) */}
+        <div aria-hidden className="h-40" />
       </div>
     </section>
   );
