@@ -8,7 +8,7 @@ npm run build    # production build in dist/
 
 ## Make it yours
 - **All text, links, skills, projects** → `src/data.js`
-- **Photos** → put images in `public/` and set `site.avatar`, `about.photoLeft.src`, etc. (e.g. `'/me.jpg'`). Left as `null`, illustrated placeholders are shown.
+- **Photos** → put images in `public/` and set e.g. `site.avatar: import.meta.env.BASE_URL + "me.jpg"` (the BASE_URL prefix keeps it working on GitHub Pages). Left as `null`, illustrated placeholders are shown.
 - **Add a project** → add an object to `projects` (theme: `dark` | `yellow` | `blue`, mockup: `phone` | `dashboard` | `map`).
 - **Colors, fonts & animations** → `tailwind.config.js` (e.g. `sun`, `rose`, `cobalt`, `animate-float`).
 - **Shared classes** (`btn-dark`, `btn-outline`, `tape`, `torn`, `social`) → `src/index.css`.
@@ -20,3 +20,7 @@ npm run build    # production build in dist/
 - `components/About.jsx` – draggable polaroids, torn-sticker skills
 - `components/Projects.jsx` – sticky stacking folder cards
 - `components/Contact.jsx` – marquee + contact footer
+
+## Deploying
+Every push to `main` builds and publishes the site to GitHub Pages automatically (`.github/workflows/deploy.yml`).
+Live at: https://apinanderrson.github.io/portfolio/
