@@ -5,9 +5,9 @@
 // ─────────────────────────────────────────────────────────────
 
 export const site = {
-  name: 'ROBIN',
-  role: 'Product Designer',
-  location: 'Chicago, IL',
+  name: 'HOVIANTO',
+  role: 'Software Engineer',
+  location: 'Batam, Indonesia',
   status: 'Open to new work and good problems',
   tagLeft: 'Made things',
   tagRight: 'Sweat the details',

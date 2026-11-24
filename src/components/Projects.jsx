@@ -28,7 +28,7 @@ function Card({ project, index, total, progress }) {
         style={{ scale }}
         initial={{ opacity: 0, y: 100 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: '-60px' }}
+        viewport={{ once: true, margin: "-60px" }}
         transition={{ duration: 0.8, ease: [0.2, 0.8, 0.2, 1] }}
       >
         {/* Folder tab — fixed width, placed right next to the previous card's tab
@@ -47,16 +47,23 @@ function Card({ project, index, total, progress }) {
         <div className="grid items-center gap-5 p-6 md:grid-cols-[0.9fr_1.1fr] md:gap-12 md:p-10">
           <div>
             <p className="mb-3.5 flex items-center gap-2 font-mono text-[10px] font-bold uppercase tracking-[0.12em]">
-              <span className="h-2 w-2 rounded-full bg-current" /> {project.date}
+              <span className="h-2 w-2 rounded-full bg-current" />{" "}
+              {project.date}
             </p>
-            <h3 className="mb-3.5 text-[clamp(38px,6vw,54px)] font-bold leading-none tracking-tighter">{project.title}</h3>
-            <p className="mb-6 max-w-[34ch] text-sm leading-relaxed opacity-85">{project.description}</p>
+            <h3 className="mb-3.5 text-[clamp(38px,6vw,54px)] font-bold leading-none tracking-tighter">
+              {project.title}
+            </h3>
+            <p className="mb-6 max-w-[34ch] text-sm leading-relaxed opacity-85">
+              {project.description}
+            </p>
             <a
               href={project.href}
               className="group inline-flex gap-1.5 border-b-2 border-current pb-1 font-mono text-[10px] font-bold uppercase tracking-[0.12em]"
             >
               View project
-              <span className="transition-transform duration-200 group-hover:-translate-y-[3px] group-hover:translate-x-[3px]">↗</span>
+              <span className="transition-transform duration-200 group-hover:-translate-y-[3px] group-hover:translate-x-[3px]">
+                ↗
+              </span>
             </a>
           </div>
 
@@ -66,7 +73,7 @@ function Card({ project, index, total, progress }) {
             <motion.div
               className="h-[clamp(220px,30vw,320px)] overflow-hidden rounded-md border-[3px] border-white bg-[#111]"
               whileHover={{ scale: 1.03, rotate: -1 }}
-              transition={{ type: 'spring', stiffness: 200, damping: 15 }}
+              transition={{ type: "spring", stiffness: 200, damping: 15 }}
             >
               <Mockup kind={project.mockup} />
             </motion.div>
@@ -82,7 +89,10 @@ export default function Projects() {
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end end'] });
 
   return (
-    <section id="work" className="mx-auto max-w-[1100px] px-4 pb-28 sm:px-8 lg:px-12">
+    <section
+      id="work"
+      className="mx-auto max-w-[1100px] px-4 pb-28 sm:px-8 lg:px-12"
+    >
       <motion.h2
         className="mb-[70px] font-hand text-[22px] font-normal"
         initial={{ opacity: 0, x: -30 }}
@@ -93,7 +103,13 @@ export default function Projects() {
       </motion.h2>
       <div ref={ref}>
         {projects.map((p, i) => (
-          <Card key={p.id} project={p} index={i} total={projects.length} progress={scrollYProgress} />
+          <Card
+            key={p.id}
+            project={p}
+            index={i}
+            total={projects.length}
+            progress={scrollYProgress}
+          />
         ))}
         {/* Spacer: keeps the earlier cards pinned until the last card has fully stacked on them.
             (Sticky items are released when their container's content ends — padding doesn't count.) */}

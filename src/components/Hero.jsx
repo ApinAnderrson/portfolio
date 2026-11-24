@@ -39,12 +39,12 @@ export default function Hero() {
       className="relative flex min-h-[calc(100svh-56px)] flex-col items-center justify-center px-4 pb-28 pt-14 text-center sm:px-8"
     >
       {/* Floating avatars */}
-      <motion.div className="absolute left-[4%] top-[12%] z-10 md:left-[12%] md:top-[46%]" style={{ x: leftX, y: leftY }}>
+      <motion.div className="absolute left-[4%] top-[12%] z-10 md:left-[12%] md:top-[50%]" style={{ x: leftX, y: leftY }}>
         <motion.div {...pop(1.1)} className="animate-float">
           <Avatar src={site.avatar} />
         </motion.div>
       </motion.div>
-      <motion.div className="absolute right-[4%] top-[12%] z-10 md:right-[12%] md:top-1/2" style={{ x: rightX, y: rightY }}>
+      <motion.div className="absolute right-[4%] top-[12%] z-10 md:right-[12%] md:top-10" style={{ x: rightX, y: rightY }}>
         <motion.div {...pop(1.25)} className="animate-float-fast">
           <Avatar src={site.avatar} />
         </motion.div>
@@ -91,10 +91,10 @@ export default function Hero() {
             ))}
           </h1>
 
-          <motion.span className={`${note} -bottom-8 -left-1.5 bg-sun [rotate:-4deg] md:-bottom-[26px] md:-left-[110px]`} {...pop(1.2)}>
+          <motion.span className={`${note} -bottom-8 -left-1.5 bg-sun [rotate:-4deg] md:-bottom-[33px] md:-left-[110px]`} {...pop(1.2)}>
             {site.role}
           </motion.span>
-          <motion.span className={`${note} -bottom-8 -right-1.5 bg-mint [rotate:3deg] md:-bottom-[22px] md:-right-[100px]`} {...pop(1.3)}>
+          <motion.span className={`${note} -bottom-8 -right-1.5 bg-mint [rotate:3deg] md:-bottom-[33px] md:-right-[100px]`} {...pop(1.3)}>
             {site.location}
           </motion.span>
 
@@ -134,6 +134,9 @@ export default function Hero() {
       <h2 className="mb-7 mt-8 text-[clamp(28px,4.4vw,40px)] font-bold leading-tight tracking-tight md:mt-12">
         {lines.map((line, li) => (
           <span key={li} className="flex flex-wrap items-center justify-center gap-x-[0.28em]">
+            <motion.span className={`ml-[0.1em] inline-grid place-items-center text-[0.9em] ${li ? 'text-rose' : 'text-leaf'}`} {...pop(1.7 + li * 0.15)}>
+              <span className={`inline-block ${li ? 'animate-spin-slow' : 'animate-throb'}`}>{li ? '' : '◎'}</span>
+            </motion.span>
             {line.map((w, wi) => (
               <span key={wi} className="inline-block overflow-hidden pb-[0.08em]">
                 <motion.span
@@ -147,7 +150,7 @@ export default function Hero() {
               </span>
             ))}
             <motion.span className={`ml-[0.1em] inline-grid place-items-center text-[0.9em] ${li ? 'text-rose' : 'text-leaf'}`} {...pop(1.7 + li * 0.15)}>
-              <span className={`inline-block ${li ? 'animate-spin-slow' : 'animate-throb'}`}>{li ? '✿' : '◎'}</span>
+              <span className={`inline-block ${li ? 'animate-spin-slow' : 'animate-throb'}`}>{li ? '✿' : ''}</span>
             </motion.span>
           </span>
         ))}

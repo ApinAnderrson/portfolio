@@ -24,7 +24,7 @@ export default {
         pixel: ['"Pixelify Sans"', '"Space Mono"', 'monospace'],
       },
       backgroundImage: {
-        ruled: 'repeating-linear-gradient(to bottom, transparent 0 31px, rgba(30,30,30,0.06) 31px 32px)',
+        ruled: 'repeating-linear-gradient(to bottom, transparent 0 30px, rgba(40,40,30,0.06) 31px 32px)',
         rainbow: 'linear-gradient(90deg, #3b3fe0, #ea4f8f, #f1c84b)',
         highlight: 'linear-gradient(transparent 60%, #ea4f8f 60%)',
       },
