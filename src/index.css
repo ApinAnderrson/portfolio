@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 68px;
+  }
+  body {
+    @apply bg-paper bg-ruled font-sans text-ink antialiased overflow-x-hidden;
+  }
+}
+
+/* A few patterns reused across components */
+@layer components {
+  .label-mono {
+    @apply font-mono text-[11px] font-bold uppercase tracking-[0.12em];
+  }
+  .tape {
+    @apply absolute -top-2 z-20 h-[18px] w-[60px] opacity-75 shadow-sm;
+  }
+  .tape-l { @apply -left-4 [rotate:-35deg]; }
+  .tape-r { @apply -right-4 [rotate:35deg]; }
+  .torn {
+    clip-path: polygon(0% 10%, 3% 0%, 50% 4%, 97% 0%, 100% 12%, 98% 32%, 100% 52%, 97% 72%, 100% 90%, 96% 100%, 50% 96%, 4% 100%, 0% 88%, 2% 68%, 0% 48%, 3% 28%);
+  }
+  .social {
+    @apply grid h-6 w-6 place-items-center rounded-full border-[1.5px] border-ink text-[10px] font-extrabold text-ink transition-transform duration-200 hover:-translate-y-[3px] hover:-rotate-[8deg];
+  }
+  .btn-outline {
+    @apply label-mono inline-flex items-center gap-1.5 border-2 border-ink bg-white px-3.5 py-[7px] tracking-[0.08em] transition duration-200 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[3px_3px_0_#1b1b1b];
+  }
+  .btn-dark {
+    @apply label-mono relative z-10 inline-flex items-center gap-3 border-2 border-coal bg-coal py-2.5 pl-2.5 pr-[18px] text-white;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
